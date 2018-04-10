@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimaryDark"
+    tools:context="com.example.davidruiz.preliminar.Registration">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="wrap_content"
+            android:layout_height="200dp"
+            android:layout_weight="1"
+            android:src="@drawable/propuesta2"/>
+
+        <EditText
+            android:id="@+id/edtTypes"
+            android:hint="Tipo de Documento"
+            android:inputType="none"
+            android:maxLength="4"
+            style="@style/editText_style"/>
+
+        <EditText
+            android:id="@+id/edtDocument"
+            android:hint="Documento"
+            android:inputType="number"
+            android:maxLength="15"
+            style="@style/editText_style"/>
+
+        <EditText
+            android:id="@+id/edtName"
+            android:hint="Nombres"
+            android:inputType="textPersonName"
+            android:maxLength="30"
+            style="@style/editText_style"/>
+
+        <EditText
+            android:id="@+id/edtLastName"
+            android:hint="Apellidos"
+            android:inputType="textPersonName"
+            android:maxLength="30"
+            style="@style/editText_style"/>
+
+        <EditText
+            android:id="@+id/edtDate"
+            android:hint="Fecha de Nacimiento"
+            android:inputType="none"
+            android:imeOptions="flagNoExtractUi"
+            style="@style/editText_style"/>
+
+        <EditText
+            android:id="@+id/edtAddress"
+            android:hint="Dirección de Vivienda"
+            android:inputType="textPostalAddress"
+            android:maxLength="50"
+            style="@style/editText_style"/>
+
+        <EditText
+            android:id="@+id/edtPhone"
+            android:hint="Número de Celular"
+            android:inputType="number"
+            android:maxLength="10"
+            style="@style/editText_style"/>
+
+        <EditText
+            android:id="@+id/edtEmail"
+            android:hint="Correo Electronico"
+            android:inputType="textEmailAddress"
+            android:maxLength="50"
+            style="@style/editText_style"/>
+
+        <EditText
+            android:id="@+id/edtPassword"
+            android:hint="Contraseña"
+            android:inputType="textPassword"
+            android:maxLength="15"
+            style="@style/editText_style"/>
+
+        <EditText
+            android:id="@+id/edtConfirmPassword"
+            android:hint="Confirmar Contraseña"
+            android:inputType="textPassword"
+            android:maxLength="15"
+            style="@style/editText_style"/>
+
+        <CheckBox
+            android:id="@+id/checkBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Acepto terminos y condiciones."
+            style="@style/textView_style"/>
+
+        <Button
+            android:id="@+id/btnRegistrer"
+            android:text="REGISTRARSE"
+            style="@style/button_style"/>
+    </LinearLayout>
+</ScrollView>

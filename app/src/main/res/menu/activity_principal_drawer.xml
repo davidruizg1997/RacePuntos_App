@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_camera"
+            android:icon="@drawable/home"
+            android:title="Principal" />
+        <item
+            android:id="@+id/nav_gallery"
+            android:icon="@drawable/puntos"
+            android:title="Puntos" />
+        <item
+            android:id="@+id/nav_slideshow"
+            android:icon="@drawable/estacion"
+            android:title="Estaciones de Servicio" />
+        <item
+            android:id="@+id/servicios"
+            android:icon="@drawable/servicios"
+            android:title="Servicios" />
+
+        <item
+            android:id="@+id/ayuda"
+            android:icon="@drawable/ayuda"
+            android:title="Ayuda" />
+
+        <item
+            android:id="@+id/salir"
+            android:icon="@drawable/salir"
+            android:title="Salir" />
+    </group>
+
+</menu>

@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">Race Puntos</string>
+    <string name="title_activity_principal">Principal</string>
+    <string name="titulo_maps">Mapas Estaciones</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
+    <string-array name="filtros_item">
+        <item>Todas las estaciones</item>
+        <item>Terpel</item>
+        <item>Esso</item>
+        <item>Texaco</item>
+        <item>Petrobras</item>
+    </string-array>
+</resources>
