@@ -70,7 +70,7 @@ public class Login extends AppCompatActivity {
                                     message="Por favor ingrese los datos";
                                     Toast.makeText(getApplicationContext(),message, Toast.LENGTH_SHORT).show();
                                 }else{
-                                    enterApp();
+                                    enterApp(user, password);
                                 }
                             }catch (Exception e){
                                 message=e.getMessage();
@@ -103,12 +103,11 @@ public class Login extends AppCompatActivity {
         editor.commit();
     }
 
-    public void enterApp(){
+    public void enterApp(String document, String password){
         String message;
         Boolean access=false;
         try{
-            String document=userDocument.getText().toString();
-            String password=loginPassword.getText().toString();
+
             CallableStatement procedure=connectRacePuntos.conexionBD().prepareCall("{call logeo_persona(?,?)}");
             procedure.setString("@documento_ingresado", document);
             procedure.setString("@contrasena_ingresada", password);

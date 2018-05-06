@@ -11,11 +11,13 @@ import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -38,7 +40,20 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.PolylineOptions;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
+import javax.net.ssl.HttpsURLConnection;
 
 
 /**
@@ -50,6 +65,7 @@ public class MapEstacionesFragment extends Fragment implements OnMapReadyCallbac
     MapView mMapView;
     View mView;
     private final static int MY_PERMISSION_FINE_LOCATION=100;
+    ArrayList<LatLng> listPoints;
 
     String[] listadoEstaciones;
     boolean[] checkedEstaciones;
@@ -108,61 +124,102 @@ public class MapEstacionesFragment extends Fragment implements OnMapReadyCallbac
             }
             return;
         }
-        //uiSettings.setMyLocationButtonEnabled(true);
-        //mGoogleMap.setMyLocationEnabled(true);
-        Criteria criteria=new Criteria();
+        uiSettings.setMyLocationButtonEnabled(true);
+        mGoogleMap.setMyLocationEnabled(true);
+        /*Criteria criteria=new Criteria();
         Location loc=locationManager.getLastKnownLocation(locationManager.getBestProvider(criteria, false));
-        final LatLng estacion1=new LatLng(loc.getLatitude(),loc.getLongitude());
+        LatLng estacion1=new LatLng(loc.getLatitude(), loc.getLongitude());
         latitud=loc.getLatitude();
         longitud=loc.getLongitude();
-        System.out.println(latitud+", "+longitud);
+        System.out.println(latitud+", "+longitud);*/
 
         mGoogleMap.getUiSettings().setMyLocationButtonEnabled(true);
-        mGoogleMap.addPolyline(new PolylineOptions().add(
-                new LatLng(4.6193382,-74.0747432),
+
+        /*mGoogleMap.addPolyline(new PolylineOptions().add(
+                new LatLng(4.619483, -74.074598),
                 new LatLng(latitud, longitud)
-                ).width(10).color(Color.RED)
+                ).width(10).color(Color.BLUE)
+        );*/
+        mGoogleMap.setOnMapLongClickListener(new GoogleMap.OnMapLongClickListener() {
+            @Override
+            public void onMapLongClick(LatLng latLng) {
+                if(listPoints.size()==2){
+                    listPoints.clear();
+                }
+                MarkerOptions markerOptions=new MarkerOptions();
+                markerOptions.position(latLng);
 
-        );
+                if(listPoints.size()==1){
 
+                }else{
+
+                }
+
+                if(listPoints.size()==2){
+                    String url = getRequestUrl(new LatLng(latitud, longitud),listPoints.get(0));
+                    TaskRequestDirections taskRequestDirections=new TaskRequestDirections();
+                    taskRequestDirections.execute(url);
+                }
+            }
+        });
         Mobil(googleMap);
         Terpel(googleMap);
         Petrobras(googleMap);
+    }
 
-        /*if(mGoogleMap!=null){
-            mGoogleMap.setInfoWindowAdapter(new GoogleMap.InfoWindowAdapter() {
-                @Override
-                public View getInfoWindow(Marker marker) {
-                    View row=getLayoutInflater().inflate(R.layout.custom_marker, null);
-                    ImageView imageStation=(ImageView) row.findViewById(R.id.imageMarker);
-                    TextView titleMarker=(TextView) row.findViewById(R.id.titleStation);
-                    Button go=(Button) row.findViewById(R.id.btnGo);
+    private String getRequestUrl(LatLng origin, LatLng dest) {
+        String str_org="origin="+origin.latitude+","+origin.longitude;
+        String str_dest="destination="+dest.latitude+","+dest.longitude;
+        String sensor="sensor=false";
+        String mode="mode=driving";
+        String param=str_org+"&"+str_dest+"&"+sensor+"&"+mode;
+        String output="json";
+        String url="https://maps.googleapis.com/maps/apis/directions/"+output+"?"+param;
+        return url;
+    }
 
-                    imageStation.setImageResource(R.drawable.propuesta2);
-                    titleMarker.setText(marker.getTitle());
-                    //go.setOnClickListener();
-                    return row;
-                }
+    private String requestDirection(String reqUrl) throws IOException {
+        String responseString="";
+        InputStream inputStream=null;
+        HttpsURLConnection httpsURLConnection=null;
+        try{
+            URL url=new URL(reqUrl);
+            httpsURLConnection=(HttpsURLConnection) url.openConnection();
+            httpsURLConnection.connect();
 
-                @Override
-                public View getInfoContents(Marker marker) {
+            inputStream=httpsURLConnection.getInputStream();
+            InputStreamReader inputStreamReader=new InputStreamReader(inputStream);
+            BufferedReader bufferedReader=new BufferedReader(inputStreamReader);
 
-                    return null;
-                }
-            });
-        }*/
-        //Falta revisar
+            StringBuffer stringBuffer=new StringBuffer();
+            String line="";
+            while ((line=bufferedReader.readLine())!=null){
+                stringBuffer.append(line);
+            }
+
+            responseString=stringBuffer.toString();
+            bufferedReader.close();
+            inputStreamReader.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if(inputStream!=null){
+                inputStream.close();
+            }
+            httpsURLConnection.disconnect();
+        }
+        return responseString;
     }
 
     public void Mobil(GoogleMap googleMap){
         mGoogleMap=googleMap;
-        final LatLng estacion1=new LatLng(4.6193382,-74.0747432);
+        final LatLng estacion1=new LatLng(4.619588,-74.074542);
         mGoogleMap.addMarker(new MarkerOptions().position(estacion1).title("Esso Mobil - Cll 28").snippet("El precio de la gasolina es :").icon(BitmapDescriptorFactory.fromResource(R.drawable.mobil)));
-        final LatLng estacion2=new LatLng(4.623858, -74.075975);
-        mGoogleMap.addMarker(new MarkerOptions().position(estacion2).title("Esso Mobil - Cra. 34").snippet("El precio de la gasolina es :").icon(BitmapDescriptorFactory.fromResource(R.drawable.mobil)));
-        final LatLng estacion3=new LatLng(4.631120, -74.072411);
+        final LatLng estacion2=new LatLng(4.623995, -74.076052);
+        mGoogleMap.addMarker(new MarkerOptions().position(estacion2).title("Esso Mobil - Cll. 34").snippet("El precio de la gasolina es :").icon(BitmapDescriptorFactory.fromResource(R.drawable.mobil)));
+        final LatLng estacion3=new LatLng(4.630981, -74.072502);
         mGoogleMap.addMarker(new MarkerOptions().position(estacion3).title("Esso Mobil - La Soledad").snippet("El precio de la gasolina es :").icon(BitmapDescriptorFactory.fromResource(R.drawable.mobil)));
-        final LatLng estacion4=new LatLng(4.626229, -74.080204);
+        final LatLng estacion4=new LatLng(4.626217, -74.080040);
         mGoogleMap.addMarker(new MarkerOptions().position(estacion4).title("Esso Mobil - CAD").snippet("El precio de la gasolina es :").icon(BitmapDescriptorFactory.fromResource(R.drawable.mobil)));
     }
 
@@ -175,19 +232,17 @@ public class MapEstacionesFragment extends Fragment implements OnMapReadyCallbac
     public void Terpel(GoogleMap googleMap)
     {
         mGoogleMap=googleMap;
-        final LatLng estacion1=new LatLng(4.6306523,-74.0787819);
+        final LatLng estacion1=new LatLng(4.630661,-74.078772);
         mGoogleMap.addMarker(new MarkerOptions().position(estacion1).title("Terpel Avenida 28").snippet("El precio de la gasolina es :").icon(BitmapDescriptorFactory.fromResource(R.drawable.terpel)));
-        final LatLng estacion2=new LatLng(4.627091, -74.065766);
-        mGoogleMap.addMarker(new MarkerOptions().position(estacion1).title("Terpel Javeriana").snippet("El precio de la gasolina es :").icon(BitmapDescriptorFactory.fromResource(R.drawable.terpel)));
+        final LatLng estacion2=new LatLng(4.627100, -74.065772);
+        mGoogleMap.addMarker(new MarkerOptions().position(estacion2).title("Terpel Javeriana").snippet("El precio de la gasolina es :").icon(BitmapDescriptorFactory.fromResource(R.drawable.terpel)));
     }
 
     public void Petrobras(GoogleMap googleMap)
     {
         mGoogleMap=googleMap;
-        final LatLng estacion1=new LatLng(4.633012, -74.070072);
-        mGoogleMap.addMarker(new MarkerOptions().position(estacion1).title("Petrobras - Cll 45").snippet("El precio de la gasolina es :").icon(BitmapDescriptorFactory.fromResource(R.drawable.terpel)));
-        final LatLng estacion2=new LatLng(4.627091, -74.065766);
-        mGoogleMap.addMarker(new MarkerOptions().position(estacion1).title("Terpel Javeriana").snippet("El precio de la gasolina es :").icon(BitmapDescriptorFactory.fromResource(R.drawable.terpel)));
+        final LatLng estacion1=new LatLng(4.633121, -74.070061);
+        mGoogleMap.addMarker(new MarkerOptions().position(estacion1).title("Petrobras - Cll 45").snippet("El precio de la gasolina es :").icon(BitmapDescriptorFactory.fromResource(R.drawable.petrobras)));
     }
 
     @Override
@@ -196,6 +251,7 @@ public class MapEstacionesFragment extends Fragment implements OnMapReadyCallbac
         setHasOptionsMenu(true);
         listadoEstaciones=getResources().getStringArray(R.array.filtros_item);
         checkedEstaciones=new boolean[listadoEstaciones.length];
+        listPoints=new ArrayList<>();
     }
 
     @Override
@@ -230,13 +286,14 @@ public class MapEstacionesFragment extends Fragment implements OnMapReadyCallbac
                     for(int u=0;i<mStationItems.size();i++){
                         item=item+stations[mStationItems.get(u)];
                         if(u!=mStationItems.size()-1){
-                            if(item=="Mobil"){
+                            if(item.equals("Mobil")){
                                 stationProvider=1;
+                                Log.d("Visual Mapa", "Selecciono Movil");
                             }
-                            if(item=="Terpel"){
+                            if(item.equals("Terpel")){
                                 stationProvider=2;
                             }
-                            if(item=="Petrobras"){
+                            if(item.equals("Petrobras")){
                                 stationProvider=3;
                             }else{
                                 stationProvider=0;
@@ -248,6 +305,7 @@ public class MapEstacionesFragment extends Fragment implements OnMapReadyCallbac
             alertDialog = builder.create();
             alertDialog.show();
         }
+        Log.e("Mensaje Error", "Si funciona");
         return true;
     }
 
@@ -287,5 +345,69 @@ public class MapEstacionesFragment extends Fragment implements OnMapReadyCallbac
         }
     }
 
+    public class TaskRequestDirections extends AsyncTask<String, Void, String>{
+
+        @Override
+        protected String doInBackground(String... strings) {
+            String responseString="";
+            try{
+                responseString=requestDirection(strings[0]);
+            }catch (IOException e){
+                e.printStackTrace();
+            }
+            return responseString;
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+            TaskParser taskParser=new TaskParser();
+            taskParser.execute(s);
+        }
+    }
+
+    public class TaskParser extends AsyncTask<String, Void, List<List<HashMap<String,String>>>>{
+
+        @Override
+        protected List<List<HashMap<String, String>>> doInBackground(String... strings) {
+            JSONObject jsonObject=null;
+            List<List<HashMap<String, String>>> routes=null;
+            try {
+                jsonObject=new JSONObject(strings[0]);
+                DirectionsEstations directionsEstations=new DirectionsEstations();
+                routes=directionsEstations.parse(jsonObject);
+            }catch (JSONException e){
+                e.printStackTrace();;
+            }
+            return routes;
+        }
+
+        @Override
+        protected void onPostExecute(List<List<HashMap<String, String>>> lists) {
+            ArrayList points=null;
+            PolylineOptions polylineOptions=null;
+            for (List<HashMap<String, String>> path:lists){
+                points=new ArrayList();
+                polylineOptions=new PolylineOptions();
+                for(HashMap<String, String> point:path){
+                    double lat= Double.parseDouble(point.get("lat"));
+                    double lon= Double.parseDouble(point.get("lon"));
+
+                    points.add(new LatLng(lat, lon));
+                }
+
+                polylineOptions.addAll(points);
+                polylineOptions.width(15);
+                polylineOptions.color(Color.BLUE);
+                polylineOptions.geodesic(true);
+            }
+
+            if(polylineOptions!=null){
+                mGoogleMap.addPolyline(polylineOptions);
+            }else{
+                Toast.makeText(getContext(), "Dirección no encontrada", Toast.LENGTH_LONG).show();
+            }
+        }
+    }
 
 }

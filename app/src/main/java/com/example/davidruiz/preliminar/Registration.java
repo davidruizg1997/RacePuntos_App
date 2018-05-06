@@ -137,8 +137,8 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
         try{
             String documentType = typesDocuments.getText().toString();
             String documentEntered = documents.getText().toString();
-            String roleEntered = "USUARIO";
-            String officeEntered = "2";
+            String roleEntered = "N/A";
+            String officeEntered = "3";
             String userCreation = "ANDROID";
             String namesEntered = name.getText().toString();
             String surnamesEntered = lastName.getText().toString();

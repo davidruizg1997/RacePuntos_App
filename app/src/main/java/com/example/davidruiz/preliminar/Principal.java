@@ -28,6 +28,9 @@ public class Principal extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_principal);
 
+        FragmentManager fm= getSupportFragmentManager();
+        fm.beginTransaction().replace(R.id.content_principal, new FragmentPrincipal()).commit();
+
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -84,7 +87,8 @@ public class Principal extends AppCompatActivity
             fm.beginTransaction().replace(R.id.content_principal, new FragmentPrincipal()).commit();
             getSupportActionBar().setTitle("Principal");
         } else if (id == R.id.nav_gallery) {
-
+            fm.beginTransaction().replace(R.id.content_principal, new Historical()).commit();
+            getSupportActionBar().setTitle("Historial");
         } else if (id == R.id.nav_slideshow) {
             fm.beginTransaction().replace(R.id.content_principal, new MapEstacionesFragment()).commit();
             getSupportActionBar().setTitle("Estaciones de Servicio");

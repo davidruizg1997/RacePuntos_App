@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Historical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_alignParentTop="true"
+        android:padding="2dp">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="7dp"
+            android:typeface="sans"
+            android:textSize="35sp"
+            android:textColor="#00d7f9"
+            android:gravity="center"
+            android:id="@+id/tvHistorical"
+            android:text="HISTORIAL"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="7dp"
+            android:typeface="sans"
+            android:textSize="15sp"
+            android:textColor="#00d7f9"
+            android:gravity="center"
+            android:id="@+id/totalPoints" />
+
+        <LinearLayout
+            android:id="@+id/headerHistorical"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="20dp"
+            android:background="#00d7f9"
+            android:paddingBottom="3dip"
+            android:paddingTop="3dip">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".50"
+                android:layout_marginTop="7dp"
+                android:typeface="sans"
+                android:text="SERVICIO"
+                android:textAlignment="center"
+                android:textSize="15sp"
+                android:textColor="#FFFFFF"
+                android:gravity="center"
+                android:id="@+id/tvTitleServices" />
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".50"
+                android:layout_marginTop="7dp"
+                android:typeface="sans"
+                android:text="PUNTOS"
+                android:textAlignment="center"
+                android:textSize="15sp"
+                android:textColor="#FFFFFF"
+                android:gravity="center"
+                android:id="@+id/tvTitlePoints" />
+        </LinearLayout>
+        <ListView
+            android:id="@+id/lvHistoricalServices"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:divider="#007D91"
+            android:layout_marginTop="5dp"
+            android:dividerHeight="1dp"
+            android:padding="5dp">
+
+        </ListView>
+    </LinearLayout>
+</RelativeLayout>

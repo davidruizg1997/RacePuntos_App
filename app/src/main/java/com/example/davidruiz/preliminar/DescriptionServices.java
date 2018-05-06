@@ -52,16 +52,27 @@ public class DescriptionServices extends AppCompatActivity {
 
         imageService=(ImageView) findViewById(R.id.service_thumbnail);
         textTitle=(TextView) findViewById(R.id.tvTitle);
-        textDescription=(TextView) findViewById(R.id.tvDescription);
         textPoints=(TextView) findViewById(R.id.tvPoints);
+        textDescription=(TextView) findViewById(R.id.tvDescription);
 
         Intent intent=getIntent();
         title=intent.getExtras().getString("Title");
         description=intent.getExtras().getString("Description");
         int image=intent.getExtras().getInt("ServiceThumbnail");
-        points=intent.getExtras().getInt("Points");
         getSupportActionBar().setTitle(title);
 
+
+        if(title.equals("Cambio de Liquidos")){
+            points=450;
+        }else if(title.equals("Montallantas")){
+            points=100;
+        }else if(title.equals("Lavado")){
+            points=500;
+        }else if(title.equals("Aditivo")){
+            points=350;
+        }else if(title.equals("Lubricantes")){
+            points=400;
+        }
 
         imageService.setImageResource(image);
         textTitle.setText(title);

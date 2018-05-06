@@ -22,21 +22,23 @@
 
         <ImageView
             android:id="@+id/imageView"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:src="@drawable/propuesta2"/>
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight=".100"
+            android:src="@drawable/propuesta2" />
 
         <EditText
             android:id="@+id/user_document"
             android:hint="Documento"
             android:inputType="number"
+            android:maxLength="10"
             style="@style/editText_style"/>
 
         <EditText
             android:id="@+id/password"
             android:hint="Contraseña"
             android:inputType="textPassword"
+            android:maxLength="10"
             style="@style/editText_style"/>
 
         <Button

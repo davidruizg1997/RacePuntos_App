@@ -78,14 +78,14 @@
             android:id="@+id/edtPassword"
             android:hint="Contraseña"
             android:inputType="textPassword"
-            android:maxLength="15"
+            android:maxLength="10"
             style="@style/editText_style"/>
 
         <EditText
             android:id="@+id/edtConfirmPassword"
             android:hint="Confirmar Contraseña"
             android:inputType="textPassword"
-            android:maxLength="15"
+            android:maxLength="10"
             style="@style/editText_style"/>
 
         <CheckBox
