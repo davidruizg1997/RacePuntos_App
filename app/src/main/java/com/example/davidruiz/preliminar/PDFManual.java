@@ -34,7 +34,7 @@ public class PDFManual extends Fragment {
         // Inflate the layout for this fragment
         View view= inflater.inflate(R.layout.fragment_pdfmanual, container, false);
         pdfView=(PDFView) view.findViewById(R.id.pdfViewer);
-        pdfView.fromAsset("seguridad.pdf").load();
+        pdfView.fromAsset("ManualUsuarioMovil.pdf").load();
         //new RetrievePDFStream().execute("https://pccito.ugr.es/ss/teoria/seguridad/seguridad.pdf");
         return view;
     }

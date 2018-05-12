@@ -3,6 +3,7 @@ package com.example.davidruiz.preliminar;
 import android.app.Activity;
 import android.app.Fragment;
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -71,7 +72,39 @@ public class CustomAdapterHistorical extends BaseAdapter {
                 temporalValues=null;
                 temporalValues=(ListModelHistorical) mListHistorical.get(position);
                 viewHolderHistorical.textService.setText(temporalValues.getNameService());
-                viewHolderHistorical.textPoints.setText(String.valueOf(temporalValues.getPoints())+" Desc.");
+
+                if(temporalValues.getNameService().equals("Cambio de liquidos")){
+                    viewHolderHistorical.textService.setTextColor(Color.parseColor("#DF0101"));
+                    viewHolderHistorical.textPoints.setTextColor(Color.parseColor("#DF0101"));
+                    viewHolderHistorical.textPoints.setText(String.valueOf(temporalValues.getPoints())+" Desc.");
+                }
+                if(temporalValues.getNameService().equals("Montallantas")){
+                    viewHolderHistorical.textService.setTextColor(Color.parseColor("#DF0101"));
+                    viewHolderHistorical.textPoints.setTextColor(Color.parseColor("#DF0101"));
+                    viewHolderHistorical.textPoints.setText(String.valueOf(temporalValues.getPoints())+" Desc.");
+                }
+                if(temporalValues.getNameService().equals("Lavado")){
+                    viewHolderHistorical.textService.setTextColor(Color.parseColor("#DF0101"));
+                    viewHolderHistorical.textPoints.setTextColor(Color.parseColor("#DF0101"));
+                    viewHolderHistorical.textPoints.setText(String.valueOf(temporalValues.getPoints())+" Desc.");
+                }
+                if(temporalValues.getNameService().equals("Aditivo")){
+                    viewHolderHistorical.textService.setTextColor(Color.parseColor("#DF0101"));
+                    viewHolderHistorical.textPoints.setTextColor(Color.parseColor("#DF0101"));
+                    viewHolderHistorical.textPoints.setText(String.valueOf(temporalValues.getPoints())+" Desc.");
+                }
+                if(temporalValues.getNameService().equals("Lubricantes")){
+                    viewHolderHistorical.textService.setTextColor(Color.parseColor("#DF0101"));
+                    viewHolderHistorical.textPoints.setTextColor(Color.parseColor("#DF0101"));
+                    viewHolderHistorical.textPoints.setText(String.valueOf(temporalValues.getPoints())+" Desc.");
+                }
+                if(temporalValues.getNameService().equals("Carga de Combustible")){
+                    viewHolderHistorical.textService.setTextColor(Color.parseColor("#01DF01"));
+                    viewHolderHistorical.textPoints.setTextColor(Color.parseColor("#01DF01"));
+                    viewHolderHistorical.textPoints.setText(String.valueOf(temporalValues.getPoints())+" Adic.");
+                }
+
+                //viewHolderHistorical.textPoints.setText(String.valueOf(temporalValues.getPoints())+" Desc.");
             }
         }catch (Exception ex){
             ex.printStackTrace();

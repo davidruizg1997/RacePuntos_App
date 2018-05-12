@@ -49,7 +49,7 @@ public class Splash extends AppCompatActivity {
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     } finally {
-                        String mensaje;
+
                         try{
                             String user, pass;
                             SharedPreferences preferences=getSharedPreferences("Logeo", Context.MODE_PRIVATE);
@@ -72,10 +72,6 @@ public class Splash extends AppCompatActivity {
                                     // Confirma que se ejecuto el procedimiento almacenado.
                                     final ResultSet rs=procedure.getResultSet();
 
-                                    /*String consulta="SELECT * FROM personas WHERE documento='"+user+"' and contrasena='"+pass+"'";
-                                    Statement stmt= connectRacePuntos.conexionBD().createStatement();
-                                    final ResultSet rs=stmt.executeQuery(consulta);*/
-
                                     if (rs.next()==true){
                                         message="Acceso exitoso";
                                         Toast.makeText(getApplicationContext(),message, Toast.LENGTH_SHORT).show();
@@ -95,7 +91,7 @@ public class Splash extends AppCompatActivity {
                                 }
                             }
                         }catch(Exception e){
-                            mensaje=e.getMessage();
+                            e.getMessage();
                         }
                     }
 

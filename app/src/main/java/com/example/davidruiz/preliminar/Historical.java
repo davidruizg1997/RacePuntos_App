@@ -3,6 +3,7 @@ package com.example.davidruiz.preliminar;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -65,7 +66,7 @@ public class Historical extends Fragment {
             int totalPoints=0;
             while (rs.next()){
                 totalPoints=rs.getInt("puntos_acumulados");
-                textPoints.setText(totalPoints+" puntos");
+                textPoints.setText(totalPoints+" Puntos Disponibles");
             }
         }catch (Exception ex){
 
@@ -127,7 +128,7 @@ public class Historical extends Fragment {
                     while(rsOne.next()){
                         reference_points=rsOne.getInt("id_puntos_actuales");
 
-                        CallableStatement procedureTwo=con.prepareCall("{call obtener_id_servicio_puntos_compra(?)}");
+                            CallableStatement procedureTwo=con.prepareCall("{call obtener_id_servicio_puntos_compra(?)}");
                         procedureTwo.setInt("@id_puntos_actuales_ingreso", reference_points);
                         procedureTwo.execute();
 
@@ -161,6 +162,8 @@ public class Historical extends Fragment {
                             }else if (service.equals("Aditivo")){
                                 CustomListView.add(new ListModelHistorical(service, buy_points));
                             }else if (service.equals("Lubricantes")){
+                                CustomListView.add(new ListModelHistorical(service, buy_points));
+                            }else if (service.equals("Carga de Combustible")){
                                 CustomListView.add(new ListModelHistorical(service, buy_points));
                             }
                         }

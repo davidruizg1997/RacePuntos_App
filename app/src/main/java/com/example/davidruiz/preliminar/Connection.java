@@ -20,7 +20,7 @@ public class Connection {
             Class.forName("net.sourceforge.jtds.jdbc.Driver");
             conexion= DriverManager.getConnection("jdbc:jtds:sqlserver://smarttech.database.windows.net:1433;databaseName=RacePuntos;user=plataforma;password=6QphC1SQ");
         }catch(Exception e){
-            //Toast.makeText(getApplicationContext(),e.getMessage(), Toast.LENGTH_SHORT).show();
+            e.printStackTrace();
         }
         return conexion;
     }

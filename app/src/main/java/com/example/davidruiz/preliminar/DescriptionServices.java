@@ -1,5 +1,6 @@
 package com.example.davidruiz.preliminar;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.support.v7.app.AlertDialog;
@@ -84,6 +85,7 @@ public class DescriptionServices extends AppCompatActivity {
         ReserveDialog fpDialog=new ReserveDialog();
         fpDialog.show(getSupportFragmentManager(), "Reserva");
 
+        Context context=getApplicationContext();
         Intent intent=new Intent(getApplicationContext(), ReserveDialog.class);
         intent.putExtra("Title", title);
     }

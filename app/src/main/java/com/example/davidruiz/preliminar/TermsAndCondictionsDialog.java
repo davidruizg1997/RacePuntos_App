@@ -31,7 +31,6 @@ public class TermsAndCondictionsDialog extends AppCompatDialogFragment {
                     }
                 });
 
-        //title=(TextView) view.findViewById(R.id.titleTerms);
         text=(TextView) view.findViewById(R.id.textTerms);
         text.setText("Al descargar o utilizar la aplicación Race Puntos, aceptará automáticamente estos términos. Asegúrese de leerlos atentamente antes de utilizar la aplicación. Le ofrecemos esta aplicación para su uso personal sin ningún coste, no deberá intentar extraer código fuente de la aplicación, traducir la aplicación a otros idiomas ni crear versiones derivadas. La aplicación y todas las marcas comerciales, los derechos de autor, los derechos sobre bases de datos y demás derechos de propiedad intelectual relacionados continuaran siendo propiedad de Smart Tech.");
         return builder.create();
