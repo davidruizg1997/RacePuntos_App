@@ -8,29 +8,19 @@ import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.graphics.Paint;
 import android.os.Handler;
-import android.os.Looper;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.InputType;
-import android.text.SpannableString;
-import android.text.style.UnderlineSpan;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import java.sql.CallableStatement;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.Calendar;
 
 import dmax.dialog.SpotsDialog;
@@ -57,7 +47,6 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
         typesDocuments.setCursorVisible(false);
         typesDocuments.getEditableText();
         typesDocuments.setInputType(InputType.TYPE_NULL);
-        //documents.setEnabled(false);
 
         documents=(EditText) findViewById(R.id.edtDocument);
         name=(EditText) findViewById(R.id.edtName);
@@ -68,7 +57,6 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
         date.getEditableText();
         date.setInputType(InputType.TYPE_NULL);
         date.setTextIsSelectable(true);
-        //date.setEnabled(false);
 
         address=(EditText) findViewById(R.id.edtAddress);
         phoneNumber=(EditText) findViewById(R.id.edtPhone);

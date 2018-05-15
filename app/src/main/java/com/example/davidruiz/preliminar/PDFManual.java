@@ -27,7 +27,6 @@ public class PDFManual extends Fragment {
         // Required empty public constructor
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -35,7 +34,6 @@ public class PDFManual extends Fragment {
         View view= inflater.inflate(R.layout.fragment_pdfmanual, container, false);
         pdfView=(PDFView) view.findViewById(R.id.pdfViewer);
         pdfView.fromAsset("ManualUsuarioMovil.pdf").load();
-        //new RetrievePDFStream().execute("https://pccito.ugr.es/ss/teoria/seguridad/seguridad.pdf");
         return view;
     }
 

@@ -1,7 +1,6 @@
 package com.example.davidruiz.preliminar;
 
 import android.os.StrictMode;
-import android.widget.Toast;
 
 import java.sql.DriverManager;
 

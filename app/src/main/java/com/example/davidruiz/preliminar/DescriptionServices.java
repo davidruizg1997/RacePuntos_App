@@ -2,8 +2,6 @@ package com.example.davidruiz.preliminar;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Build;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -24,7 +22,6 @@ public class DescriptionServices extends AppCompatActivity {
 
     @Override
     public boolean onSupportNavigateUp() {
-
         onBackPressed();
         return true;
     }

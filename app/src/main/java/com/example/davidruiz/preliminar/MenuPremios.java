@@ -18,14 +18,11 @@ import java.util.List;
  */
 public class MenuPremios extends Fragment {
 
-
     List<Premios> listaPremios;
 
     public MenuPremios() {
         // Required empty public constructor
-
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

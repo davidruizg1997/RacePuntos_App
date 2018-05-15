@@ -1,27 +1,18 @@
 package com.example.davidruiz.preliminar;
 
 
-import android.app.Activity;
-import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.Looper;
-import android.preference.PreferenceManager;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.app.AppCompatDialog;
 import android.support.v7.app.AppCompatDialogFragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
@@ -30,14 +21,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.sql.CallableStatement;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 
 
 /**
@@ -173,21 +160,7 @@ public class ReserveDialog extends AppCompatDialogFragment implements AdapterVie
                                             if(horaReservaInt>hora){
                                                 validationReserves();
                                             }else{
-                                                /*dialogInterface.dismiss();
-                                                AlertDialog.Builder notTime=new AlertDialog.Builder(getContext());
-                                                notTime.setTitle("Hora No Establecida");
-                                                notTime.setMessage("La hora establecida para la reserva es menor a la actual. Por favor defina una hora posterior a la actual.");
-                                                notTime.setCancelable(false);
-                                                notTime.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                                                    @Override
-                                                    public void onClick(DialogInterface dialogInterface, int i) {
-                                                        dismiss();
-                                                    }
-                                                });*/
 
-                                                String message="La hora establecida para la reserva es menor a la actual. Por favor defina una hora posterior a la actual.";
-
-                                                alertUserTop(getActivity(),message);
                                             }
                                         }else{
                                             if(calendarDay>dia&&calendarMonth>=mes&&calendarYear==anio){
@@ -201,33 +174,13 @@ public class ReserveDialog extends AppCompatDialogFragment implements AdapterVie
                                             if(horaReservaInt>hora){
                                                 validationReserves();
                                             }else{
-                                                /*Context context=getActivity();
-                                                AlertDialog.Builder notTime=new AlertDialog.Builder(context);
-                                                notTime.setTitle("Hora No Establecida");
-                                                notTime.setMessage("La hora establecida para la reserva es menor a la actual. Por favor defina una hora posterior a la actual.");
-                                                notTime.setCancelable(false);
-                                                notTime.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                                                    @Override
-                                                    public void onClick(DialogInterface dialogInterface, int i) {
-                                                        dismiss();
-                                                    }
-                                                });*/
 
-
-
-                                                String message="La hora establecida para la reserva es menor a la actual. Por favor defina una hora posterior a la actual.";
-                                                //showToast(message);
-                                                AppCompatDialogFragment compatDialogFragment=new AppCompatDialogFragment();
-                                                alertUserTop(getContext(),message);
-
-                                                //Snackbar.make(getView(), message, Snackbar.LENGTH_LONG).show();
-                                                //dialogInterface.dismiss();
                                             }
                                         }else{
                                             if(calendarDay>dia&&calendarMonth>=mes&&calendarYear==anio){
                                                 validationReserves();
                                             }else{
-                                                Toast.makeText(getContext(),"Fecha no permitida", Toast.LENGTH_SHORT).show();
+
                                             }
                                         }
                                     }
@@ -441,7 +394,7 @@ public class ReserveDialog extends AppCompatDialogFragment implements AdapterVie
 
                 }
             }else{
-                Toast.makeText(getContext(),"Puntos Insuficientes", Toast.LENGTH_SHORT).show();
+
             }
         }catch (SQLException ex){
             Log.e("Resultado", ex.toString());

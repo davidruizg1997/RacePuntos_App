@@ -22,9 +22,9 @@
             android:title="Servicios" />
 
         <item
-            android:id="@+id/ayuda"
+            android:id="@+id/manual_usuario"
             android:icon="@drawable/ayuda"
-            android:title="Ayuda" />
+            android:title="Manual de Usuario" />
 
         <item
             android:id="@+id/salir"

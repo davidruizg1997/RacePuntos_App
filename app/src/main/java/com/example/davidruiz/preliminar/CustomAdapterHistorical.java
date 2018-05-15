@@ -1,7 +1,6 @@
 package com.example.davidruiz.preliminar;
 
 import android.app.Activity;
-import android.app.Fragment;
 import android.content.Context;
 import android.graphics.Color;
 import android.view.LayoutInflater;
@@ -9,8 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -33,7 +30,6 @@ public class CustomAdapterHistorical extends BaseAdapter {
             return 1;
             return mListHistorical.size();
     }
-
 
     @Override
     public Object getItem(int position) {
@@ -103,8 +99,6 @@ public class CustomAdapterHistorical extends BaseAdapter {
                     viewHolderHistorical.textPoints.setTextColor(Color.parseColor("#01DF01"));
                     viewHolderHistorical.textPoints.setText(String.valueOf(temporalValues.getPoints())+" Adic.");
                 }
-
-                //viewHolderHistorical.textPoints.setText(String.valueOf(temporalValues.getPoints())+" Desc.");
             }
         }catch (Exception ex){
             ex.printStackTrace();

@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.os.Handler;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -15,11 +14,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.sql.CallableStatement;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.sql.Types;
 
 import dmax.dialog.SpotsDialog;
 
@@ -111,9 +107,9 @@ public class Login extends AppCompatActivity {
             CallableStatement procedure=connectRacePuntos.conexionBD().prepareCall("{call logeo_persona(?,?)}");
             procedure.setString("@documento_ingresado", document);
             procedure.setString("@contrasena_ingresada", password);
-            // Ejecuta el procedimiento almacenado.
+
             procedure.execute();
-            // Confirma que se ejecuto el procedimiento almacenado.
+
             final ResultSet rs=procedure.getResultSet();
             if (rs.next()==true){
                 message="Acceso exitoso";

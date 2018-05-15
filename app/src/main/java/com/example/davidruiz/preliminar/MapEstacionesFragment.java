@@ -2,19 +2,16 @@ package com.example.davidruiz.preliminar;
 
 
 import android.Manifest;
-import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
-import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -25,8 +22,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -36,7 +31,6 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.UiSettings;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.PolylineOptions;
 
@@ -47,7 +41,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -115,31 +108,22 @@ public class MapEstacionesFragment extends Fragment implements OnMapReadyCallbac
 
         if(ActivityCompat.checkSelfPermission(MapEstacionesFragment.this.getContext(), Manifest.permission.ACCESS_FINE_LOCATION)== PackageManager.PERMISSION_GRANTED){
             mGoogleMap.setMyLocationEnabled(true);
-            //localizacion.setMapEstacionesFragment(this);
-            //locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER,0,0,(LocationListener) localizacion);
-            //locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,0,0,(LocationListener) localizacion);
         }else{
             if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.M){
                 requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION},MY_PERMISSION_FINE_LOCATION);
             }
             return;
         }
+
+        LatLng latLng=new LatLng(4.628355,-74.072861);
+        mGoogleMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
+        mGoogleMap.animateCamera(CameraUpdateFactory.zoomTo(15));
+
         uiSettings.setMyLocationButtonEnabled(true);
         mGoogleMap.setMyLocationEnabled(true);
-        /*Criteria criteria=new Criteria();
-        Location loc=locationManager.getLastKnownLocation(locationManager.getBestProvider(criteria, false));
-        LatLng estacion1=new LatLng(loc.getLatitude(), loc.getLongitude());
-        latitud=loc.getLatitude();
-        longitud=loc.getLongitude();
-        System.out.println(latitud+", "+longitud);*/
 
         mGoogleMap.getUiSettings().setMyLocationButtonEnabled(true);
 
-        /*mGoogleMap.addPolyline(new PolylineOptions().add(
-                new LatLng(4.619483, -74.074598),
-                new LatLng(latitud, longitud)
-                ).width(10).color(Color.BLUE)
-        );*/
         mGoogleMap.setOnMapLongClickListener(new GoogleMap.OnMapLongClickListener() {
             @Override
             public void onMapLongClick(LatLng latLng) {
@@ -223,7 +207,7 @@ public class MapEstacionesFragment extends Fragment implements OnMapReadyCallbac
         mGoogleMap.addMarker(new MarkerOptions().position(estacion4).title("Esso Mobil - CAD").snippet("El precio de la gasolina es :").icon(BitmapDescriptorFactory.fromResource(R.drawable.mobil)));
     }
 
-    public void Texaco(GoogleMap googleMap){
+    public void Texaco(GoogleMap googleMap) {
         mGoogleMap=googleMap;
         final LatLng estacion1=new LatLng(4.6161191,-74.0728485);
         mGoogleMap.addMarker(new MarkerOptions().position(estacion1).title("Texaco Av. Caracas - Cll 26").snippet("El precio de la gasolina es :").icon(BitmapDescriptorFactory.fromResource(R.drawable.texacoprueba)));
@@ -322,8 +306,6 @@ public class MapEstacionesFragment extends Fragment implements OnMapReadyCallbac
 
         @Override
         public void onLocationChanged(Location loc){
-            //latitud=loc.getLatitude();
-            //longitud=loc.getLongitude();
             LatLng latLng=new LatLng(loc.getLatitude(),loc.getLongitude());
             mGoogleMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
             mGoogleMap.animateCamera(CameraUpdateFactory.zoomTo(16));

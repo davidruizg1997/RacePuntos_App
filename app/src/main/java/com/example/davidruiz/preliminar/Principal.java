@@ -6,11 +6,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AlertDialog;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -95,9 +92,9 @@ public class Principal extends AppCompatActivity
         } else if (id == R.id.servicios){
             fm.beginTransaction().replace(R.id.content_principal, new MenuPremios()).commit();
             getSupportActionBar().setTitle("Servicios");
-        } else if (id == R.id.ayuda){
+        } else if (id == R.id.manual_usuario){
             fm.beginTransaction().replace(R.id.content_principal, new PDFManual()).commit();
-            getSupportActionBar().setTitle("Ayuda");
+            getSupportActionBar().setTitle("Manual de Usuario");
         } else if (id == R.id.salir){
             final AlertDialog.Builder alertExit=new AlertDialog.Builder(this);
             alertExit.setTitle("Salir de la Aplicación");
