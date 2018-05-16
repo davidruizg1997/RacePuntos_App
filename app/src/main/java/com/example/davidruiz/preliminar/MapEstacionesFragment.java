@@ -198,13 +198,13 @@ public class MapEstacionesFragment extends Fragment implements OnMapReadyCallbac
     public void Mobil(GoogleMap googleMap){
         mGoogleMap=googleMap;
         final LatLng estacion1=new LatLng(4.619588,-74.074542);
-        mGoogleMap.addMarker(new MarkerOptions().position(estacion1).title("Esso Mobil - Cll 28").snippet("El precio de la gasolina es :").icon(BitmapDescriptorFactory.fromResource(R.drawable.mobil)));
+        mGoogleMap.addMarker(new MarkerOptions().position(estacion1).title("Esso Mobil - Cll 28").snippet("Cll 28 No. 19-34").icon(BitmapDescriptorFactory.fromResource(R.drawable.mobil)));
         final LatLng estacion2=new LatLng(4.623995, -74.076052);
-        mGoogleMap.addMarker(new MarkerOptions().position(estacion2).title("Esso Mobil - Cll. 34").snippet("El precio de la gasolina es :").icon(BitmapDescriptorFactory.fromResource(R.drawable.mobil)));
+        mGoogleMap.addMarker(new MarkerOptions().position(estacion2).title("Esso Mobil - Cll. 34").snippet("Cll 34 No. 24-05").icon(BitmapDescriptorFactory.fromResource(R.drawable.mobil)));
         final LatLng estacion3=new LatLng(4.630981, -74.072502);
-        mGoogleMap.addMarker(new MarkerOptions().position(estacion3).title("Esso Mobil - La Soledad").snippet("El precio de la gasolina es :").icon(BitmapDescriptorFactory.fromResource(R.drawable.mobil)));
+        mGoogleMap.addMarker(new MarkerOptions().position(estacion3).title("Esso Mobil - La Soledad").snippet("Dg 42A No. 19-03").icon(BitmapDescriptorFactory.fromResource(R.drawable.mobil)));
         final LatLng estacion4=new LatLng(4.626217, -74.080040);
-        mGoogleMap.addMarker(new MarkerOptions().position(estacion4).title("Esso Mobil - CAD").snippet("El precio de la gasolina es :").icon(BitmapDescriptorFactory.fromResource(R.drawable.mobil)));
+        mGoogleMap.addMarker(new MarkerOptions().position(estacion4).title("Esso Mobil - CAD").snippet("Cll 26 No. 29-62").icon(BitmapDescriptorFactory.fromResource(R.drawable.mobil)));
     }
 
     public void Texaco(GoogleMap googleMap) {
@@ -217,16 +217,16 @@ public class MapEstacionesFragment extends Fragment implements OnMapReadyCallbac
     {
         mGoogleMap=googleMap;
         final LatLng estacion1=new LatLng(4.630661,-74.078772);
-        mGoogleMap.addMarker(new MarkerOptions().position(estacion1).title("Terpel Avenida 28").snippet("El precio de la gasolina es :").icon(BitmapDescriptorFactory.fromResource(R.drawable.terpel)));
+        mGoogleMap.addMarker(new MarkerOptions().position(estacion1).title("Terpel Avenida 28").snippet("Cra 28 No. 39B-67").icon(BitmapDescriptorFactory.fromResource(R.drawable.terpel)));
         final LatLng estacion2=new LatLng(4.627100, -74.065772);
-        mGoogleMap.addMarker(new MarkerOptions().position(estacion2).title("Terpel Javeriana").snippet("El precio de la gasolina es :").icon(BitmapDescriptorFactory.fromResource(R.drawable.terpel)));
+        mGoogleMap.addMarker(new MarkerOptions().position(estacion2).title("Terpel Javeriana").snippet("Cra. 7 No. 40A-65").icon(BitmapDescriptorFactory.fromResource(R.drawable.terpel)));
     }
 
     public void Petrobras(GoogleMap googleMap)
     {
         mGoogleMap=googleMap;
         final LatLng estacion1=new LatLng(4.633121, -74.070061);
-        mGoogleMap.addMarker(new MarkerOptions().position(estacion1).title("Petrobras - Cll 45").snippet("El precio de la gasolina es :").icon(BitmapDescriptorFactory.fromResource(R.drawable.petrobras)));
+        mGoogleMap.addMarker(new MarkerOptions().position(estacion1).title("Petrobras - Cll 45").snippet("Cll 45 No. 16-30").icon(BitmapDescriptorFactory.fromResource(R.drawable.petrobras)));
     }
 
     @Override
